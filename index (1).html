@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusRide - University Bus Management System</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <div class="logo">
+            <i class="fa-solid fa-bus"></i> CampusRide
+        </div>
+        <button id="mobile-menu-btn" class="menu-btn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </header>
+
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header desktop-only">
+                <i class="fa-solid fa-bus logo-icon"></i>
+                <h2>CampusRide</h2>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul id="nav-menu">
+                    <li><a href="#" data-target="home" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="#" data-target="dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+                    <li><a href="#" data-target="students"><i class="fa-solid fa-user-graduate"></i> Students</a></li>
+                    <li><a href="#" data-target="buses"><i class="fa-solid fa-van-shuttle"></i> Buses</a></li>
+                    <li><a href="#" data-target="drivers"><i class="fa-solid fa-id-card"></i> Drivers</a></li>
+                    <li><a href="#" data-target="routes"><i class="fa-solid fa-route"></i> Routes</a></li>
+                    <li><a href="#" data-target="schedule"><i class="fa-regular fa-clock"></i> Schedule</a></li>
+                    <li><a href="#" data-target="fees"><i class="fa-solid fa-file-invoice-dollar"></i> Fees</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>&copy; 2026 CampusRide</p>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+
+            <!-- Home Section -->
+            <section id="home" class="page-section active">
+                <div class="hero">
+                    <div class="hero-content">
+                        <h1>Welcome to <span class="highlight">CampusRide</span></h1>
+                        <p>The complete University Bus Management System. Manage students, routes, schedules, and more
+                            efficiently.</p>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary" onclick="navigateTo('dashboard')">Go to Dashboard</button>
+                            <button class="btn btn-outline" onclick="navigateTo('students')">Register Student</button>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <!-- We use the generated image path here relative to the artifact location or we can use a placeholder, but I'll use an SVG placeholder for portability in the project folder -->
+                        <div class="hero-illustration">
+<img src="campusride_hero_illustration_1780236786312.png" alt="CampusRide Bus Illustration" style="max-width: 100%; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);.PNG">
+                                
+                        </div>
+                    </div>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fa-solid fa-route feature-icon"></i>
+                        <h3>Optimized Routes</h3>
+                        <p>Efficiently plan and manage bus routes across the campus and city.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fa-solid fa-users feature-icon"></i>
+                        <h3>Student Tracking</h3>
+                        <p>Keep track of registered students and their assigned transportation.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fa-regular fa-calendar-check feature-icon"></i>
+                        <h3>Live Scheduling</h3>
+                        <p>Up-to-date departure and arrival times for all campus buses.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="page-section">
+                <div class="section-header">
+                    <h2>Reports Dashboard</h2>
+                    <p>Overview of the university transportation system</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon bg-blue"><i class="fa-solid fa-user-graduate"></i></div>
+                        <div class="stat-details">
+                            <p class="stat-title">Total Students</p>
+                            <h3 class="stat-value" id="stat-total-students">0</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon bg-green"><i class="fa-solid fa-bus"></i></div>
+                        <div class="stat-details">
+                            <p class="stat-title">Total Buses</p>
+                            <h3 class="stat-value" id="stat-total-buses">0</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon bg-orange"><i class="fa-solid fa-id-badge"></i></div>
+                        <div class="stat-details">
+                            <p class="stat-title">Total Drivers</p>
+                            <h3 class="stat-value" id="stat-total-drivers">0</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon bg-purple"><i class="fa-solid fa-map-location-dot"></i></div>
+                        <div class="stat-details">
+                            <p class="stat-title">Active Routes</p>
+                            <h3 class="stat-value" id="stat-total-routes">0</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-widgets">
+                    <div class="widget">
+                        <h3>Fee Collection Status</h3>
+                        <div class="fee-stats-container">
+                            <div class="fee-stat">
+                                <h4>Paid</h4>
+                                <p class="text-green" id="stat-paid-students">0</p>
+                            </div>
+                            <div class="fee-stat">
+                                <h4>Unpaid</h4>
+                                <p class="text-red" id="stat-unpaid-students">0</p>
+                            </div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="fee-progress-bar" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="widget">
+                        <h3>Quick Actions</h3>
+                        <div class="quick-actions">
+                            <button class="btn btn-outline" onclick="navigateTo('students')"><i
+                                    class="fa-solid fa-plus"></i> Add Student</button>
+                            <button class="btn btn-outline" onclick="navigateTo('buses')"><i
+                                    class="fa-solid fa-plus"></i> Add Bus</button>
+                            <button class="btn btn-outline" onclick="navigateTo('fees')"><i
+                                    class="fa-solid fa-check"></i> Collect Fee</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Students Section -->
+            <section id="students" class="page-section">
+                <div class="section-header">
+                    <h2>Student Registration</h2>
+                    <p>Register and manage student transport records</p>
+                </div>
+
+                <div class="content-layout">
+                    <div class="form-container card">
+                        <h3>Register New Student</h3>
+                        <form id="student-form">
+                            <div class="form-group">
+                                <label for="student-name">Student Name</label>
+                                <input type="text" id="student-name" required placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="student-roll">Roll Number</label>
+                                <input type="text" id="student-roll" required placeholder="BSCS-2023-001">
+                            </div>
+                            <div class="form-group">
+                                <label for="student-route">Route Selection</label>
+                                <select id="student-route" required>
+                                    <option value="" disabled selected>Select a route</option>
+                                    <!-- Dynamic options -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="student-contact">Contact Number</label>
+                                <input type="tel" id="student-contact" required placeholder="0300-1234567">
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Add Student</button>
+                        </form>
+                    </div>
+
+                    <div class="table-container card">
+                        <div class="table-header">
+                            <h3>Registered Students</h3>
+                            <div class="search-box">
+                                <i class="fa-solid fa-search"></i>
+                                <input type="text" id="search-student" placeholder="Search by name or roll...">
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Roll No</th>
+                                        <th>Name</th>
+                                        <th>Route</th>
+                                        <th>Contact</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="student-table-body">
+                                    <!-- Dynamic rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Buses Section -->
+            <section id="buses" class="page-section">
+                <div class="section-header">
+                    <h2>Bus Management</h2>
+                    <p>Manage university fleet and capacities</p>
+                </div>
+
+                <div class="content-layout">
+                    <div class="form-container card">
+                        <h3>Add New Bus</h3>
+                        <form id="bus-form">
+                            <div class="form-group">
+                                <label for="bus-number">Bus Number / Plate</label>
+                                <input type="text" id="bus-number" required placeholder="UNI-1234">
+                            </div>
+                            <div class="form-group">
+                                <label for="bus-capacity">Capacity (Seats)</label>
+                                <input type="number" id="bus-capacity" required placeholder="50" min="10" max="100">
+                            </div>
+                            <div class="form-group">
+                                <label for="bus-route">Assigned Route</label>
+                                <select id="bus-route">
+                                    <option value="">Unassigned</option>
+                                    <!-- Dynamic options -->
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Save Bus</button>
+                        </form>
+                    </div>
+
+                    <div class="list-container card">
+                        <h3>Fleet Overview</h3>
+                        <div class="cards-grid" id="bus-cards-container">
+                            <!-- Dynamic bus cards -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Drivers Section -->
+            <section id="drivers" class="page-section">
+                <div class="section-header">
+                    <h2>Driver Management</h2>
+                    <p>Manage driver profiles and assignments</p>
+                </div>
+
+                <div class="content-layout">
+                    <div class="form-container card">
+                        <h3>Add New Driver</h3>
+                        <form id="driver-form">
+                            <div class="form-group">
+                                <label for="driver-name">Driver Name</label>
+                                <input type="text" id="driver-name" required placeholder="Jane Smith">
+                            </div>
+                            <div class="form-group">
+                                <label for="driver-license">License Number</label>
+                                <input type="text" id="driver-license" required placeholder="LIC-987654">
+                            </div>
+                            <div class="form-group">
+                                <label for="driver-bus">Assigned Bus</label>
+                                <select id="driver-bus">
+                                    <option value="">Unassigned</option>
+                                    <!-- Dynamic options -->
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Save Driver</button>
+                        </form>
+                    </div>
+
+                    <div class="table-container card">
+                        <h3>Driver List</h3>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>License</th>
+                                        <th>Assigned Bus</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="driver-table-body">
+                                    <!-- Dynamic rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Routes Section -->
+            <section id="routes" class="page-section">
+                <div class="section-header">
+                    <h2>Route Management</h2>
+                    <p>Configure bus routes and stops</p>
+                </div>
+
+                <div class="content-layout">
+                    <div class="form-container card">
+                        <h3>Create Route</h3>
+                        <form id="route-form">
+                            <div class="form-group">
+                                <label for="route-name">Route Name / Code</label>
+                                <input type="text" id="route-name" required placeholder="Route A - City Center">
+                            </div>
+                            <div class="form-group">
+                                <label for="route-stops">Stops (Comma separated)</label>
+                                <textarea id="route-stops" required
+                                    placeholder="Main Gate, Station 1, Station 2, City Mall"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Save Route</button>
+                        </form>
+                    </div>
+
+                    <div class="list-container card">
+                        <h3>Active Routes</h3>
+                        <div class="cards-grid" id="route-cards-container">
+                            <!-- Dynamic route cards -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Schedule Section -->
+            <section id="schedule" class="page-section">
+                <div class="section-header">
+                    <h2>Bus Schedule</h2>
+                    <p>Manage timings for all routes</p>
+                </div>
+
+                <div class="content-layout">
+                    <div class="form-container card">
+                        <h3>Add Timing</h3>
+                        <form id="schedule-form">
+                            <div class="form-group">
+                                <label for="schedule-route">Route</label>
+                                <select id="schedule-route" required>
+                                    <option value="" disabled selected>Select Route</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="schedule-dep">Departure Time</label>
+                                <input type="time" id="schedule-dep" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="schedule-arr">Arrival Time</label>
+                                <input type="time" id="schedule-arr" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Add Schedule</button>
+                        </form>
+                    </div>
+
+                    <div class="table-container card">
+                        <div class="table-header">
+                            <h3>Timetable</h3>
+                            <div class="filter-box">
+                                <select id="filter-schedule-route">
+                                    <option value="all">All Routes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Route</th>
+                                        <th>Departure</th>
+                                        <th>Arrival</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="schedule-table-body">
+                                    <!-- Dynamic rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Fees Section -->
+            <section id="fees" class="page-section">
+                <div class="section-header">
+                    <h2>Fee Management</h2>
+                    <p>Track student transport fee payments</p>
+                </div>
+
+                <div class="card full-width-card">
+                    <div class="table-header flex-wrap">
+                        <h3>Fee Records</h3>
+                        <div class="filters-container">
+                            <div class="search-box">
+                                <i class="fa-solid fa-search"></i>
+                                <input type="text" id="search-fee" placeholder="Search student...">
+                            </div>
+                            <select id="filter-fee-status">
+                                <option value="all">All Status</option>
+                                <option value="paid">Paid</option>
+                                <option value="unpaid">Unpaid</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Roll No</th>
+                                    <th>Student Name</th>
+                                    <th>Route</th>
+                                    <th>Fee Amount</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="fee-table-body">
+                                <!-- Dynamic rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modals or Toasts could go here -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
